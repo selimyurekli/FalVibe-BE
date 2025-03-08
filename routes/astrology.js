@@ -30,7 +30,7 @@ router.get("/daily/:zodiac", async (req, res) => {
       zodiac,
       date: today,
     });
-
+  
     // Eğer bugünün yorumu yoksa, yeni bir yorum oluştur ve kaydet
     if (!dailyHoroscope) {
       return res
