@@ -39,4 +39,27 @@ router.post("/auth-callback", async (req, res) => {
   }
 });
 
+router.post("/remove-user", async (req, res) => {
+  try {
+    const { clerkId } = req.body;
+
+    if (!clerkId) {
+      return res.status(400).json({ success: false, error: "Clerk ID is required" });
+    }
+
+    // Find and delete the user
+    const deletedUser = await User.findOneAndDelete({ clerkId });
+
+    if (!deletedUser) {
+      return res.status(404).json({ success: false, error: "User not found" });
+    }
+
+    console.log("User deleted:", deletedUser);
+    res.status(200).json({ success: true, message: "User successfully deleted" });
+  } catch (error) {
+    console.error("User deletion error:", error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 module.exports = router;
