@@ -33,6 +33,7 @@ router.get("/daily/:zodiac", async (req, res) => {
   
     // Eğer bugünün yorumu yoksa, yeni bir yorum oluştur ve kaydet
     if (!dailyHoroscope) {
+      console.error("Empty zodiac details:", dailyHoroscope);
       return res
         .status(500)
         .json({ message: "Günlük fal yorumu yapılıyor. Lütfen bekleyiniz." });
@@ -72,6 +73,7 @@ router.get("/details/:zodiac", async (req, res) => {
     });
 
     if (!zodiacDetails) {
+      console.error("Empty zodiac details:", zodiacDetails, " date: " ,today);
       return res.status(500).json({
         message: "Burç detayları hazırlanıyor. Lütfen bekleyiniz.",
       });

@@ -149,8 +149,7 @@ async function updateDailyHoroscopes() {
   }
 }
 
-// Her 1 dakikada bir çalışacak cron job (Test için)
-const cronJob = cron.schedule('0 0/5 * 1/1 * *', updateDailyHoroscopes, {
+const cronJob = cron.schedule('0 0 * * *', updateDailyHoroscopes, {
   timezone: "Europe/Istanbul"
 });
 
